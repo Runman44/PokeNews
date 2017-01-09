@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "61644724130",
+    "firebase_url": "https://pokemongoproject.firebaseio.com",
+    "project_id": "pokemongoproject",
+    "storage_bucket": "pokemongoproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61644724130:android:30bac4288cb4b95d",
+        "android_client_info": {
+          "package_name": "nl.mranderson.pokefeeds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61644724130-3usjj6otq5cs3qc6l632i0vd0i60s03u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nl.mranderson.pokefeed",
+            "certificate_hash": "B0C80792E2CA8B756ACAF638E46EDC428EEC3F70"
+          }
+        },
+        {
+          "client_id": "61644724130-vi7luo412jgi1felss7gqbqv0irkt4rj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyLgCc_hDLAa4h5l5xnRLO28N6versBkc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61644724130-vi7luo412jgi1felss7gqbqv0irkt4rj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
