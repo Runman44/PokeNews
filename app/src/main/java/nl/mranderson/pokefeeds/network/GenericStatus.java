@@ -1,6 +1,6 @@
 package nl.mranderson.pokefeeds.network;
 
-public enum PokeStatus {
+public enum GenericStatus {
 
     LOADING,
 

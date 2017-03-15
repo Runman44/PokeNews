@@ -1,4 +1,4 @@
-package nl.mranderson.pokefeeds;
+package nl.mranderson.pokefeeds.video;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,22 +8,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.rssreader.RssItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.mranderson.pokefeeds.interfaces.IPokeLinkListener;
-
+import nl.mranderson.pokefeeds.R;
+import nl.mranderson.pokefeeds.interfaces.ListItemListener;
+import nl.mranderson.pokefeeds.network.GenericItem;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.NewsItemViewHolder> {
 
     private final Context context;
-    private final IPokeLinkListener listener;
-    private List<RssItem> items = new ArrayList<>();
+    private final ListItemListener listener;
+    private List<GenericItem> items = new ArrayList<>();
 
-    public VideoAdapter(Context context, IPokeLinkListener listener) {
+    public VideoAdapter(Context context, ListItemListener listener) {
         this.context = context;
         this.listener = listener;
     }
@@ -36,7 +36,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.NewsItemView
 
     @Override
     public void onBindViewHolder(NewsItemViewHolder holder, int position) {
-        final RssItem item = items.get(position);
+        final GenericItem item = items.get(position);
         holder.vTitle.setText(item.getTitle());
         Picasso.with(context)
                 .load(item.getImageUrl())
@@ -46,7 +46,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.NewsItemView
         holder.vImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onReadMoreClicked(item.getLink());
+                listener.onItemTapped(item.getLink());
             }
         });
     }
@@ -56,7 +56,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.NewsItemView
         return items.size();
     }
 
-    public void update(List<RssItem> items) {
+    public void update(List<GenericItem> items) {
         this.items = items;
         notifyDataSetChanged();
     }
