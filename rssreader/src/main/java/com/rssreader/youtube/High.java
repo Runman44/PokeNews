@@ -1,4 +1,4 @@
-package com.rssreader;
+package com.rssreader.youtube;
 
 public class High {
     private String url;

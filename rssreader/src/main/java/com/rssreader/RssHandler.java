@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RssHandler extends DefaultHandler {
-    private List<RssItem> rssItemList;
-    private RssItem currentItem;
+    private List<ParsedItem> parsedItemList;
+    private ParsedItem currentItem;
     private boolean parsingTitle;
     private boolean parsingLink;
     private boolean parsingDescription;
@@ -21,11 +21,11 @@ public class RssHandler extends DefaultHandler {
     private String link;
 
     public RssHandler() {
-        rssItemList = new ArrayList<>();
+        parsedItemList = new ArrayList<>();
     }
 
-    public List<RssItem> getRssItemList() {
-        return rssItemList;
+    public List<ParsedItem> getParsedItemList() {
+        return parsedItemList;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class RssHandler extends DefaultHandler {
             case "entry":
             case "item":
                 if (currentItem == null) {
-                    currentItem = new RssItem();
+                    currentItem = new ParsedItem();
                     break;
                 }
             case "title":
@@ -85,7 +85,7 @@ public class RssHandler extends DefaultHandler {
                     currentItem.setDescription(description);
                     currentItem.setPubDate(pubDate);
                     currentItem.setLink(link);
-                    rssItemList.add(currentItem);
+                    parsedItemList.add(currentItem);
                     currentItem = null;
                 }
                 break;

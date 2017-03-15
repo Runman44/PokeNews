@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class RssItem {
+public class ParsedItem {
     private String title;
     private String description;
     private String link;
