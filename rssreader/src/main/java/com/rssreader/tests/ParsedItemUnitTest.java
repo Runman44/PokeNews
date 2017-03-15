@@ -1,18 +1,18 @@
-package com.rssreader.test;
+package com.rssreader.tests;
 
 
-import com.rssreader.RssItem;
+import com.rssreader.ParsedItem;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class RssItemUnitTest {
+public class ParsedItemUnitTest {
 
     @Test
     public void testSetGetTitle() throws Exception {
         // Setup
-        RssItem item = new RssItem();
+        ParsedItem item = new ParsedItem();
         item.setTitle("<div><p>A Wild pokemon is here!</p></div>");
 
         //Verify
@@ -22,7 +22,7 @@ public class RssItemUnitTest {
     @Test
     public void testSetGetDescription() throws Exception {
         // Setup
-        RssItem item = new RssItem();
+        ParsedItem item = new ParsedItem();
         item.setDescription("<div><p>A Wild pokemon is here!</p></div>");
 
         //Verify
@@ -32,7 +32,7 @@ public class RssItemUnitTest {
     @Test
     public void testSetGetPubDateWrong() throws Exception {
         // Setup
-        RssItem item = new RssItem();
+        ParsedItem item = new ParsedItem();
         item.setPubDate("2016-09-09 22:14:09");
 
         //Verify
@@ -42,7 +42,7 @@ public class RssItemUnitTest {
     @Test
     public void testSetGetPubDateRight() throws Exception {
         // Setup
-        RssItem item = new RssItem();
+        ParsedItem item = new ParsedItem();
         item.setPubDate("Wed, 09 April 1999 07:07:07 -0800");
 
         //Verify
@@ -52,7 +52,7 @@ public class RssItemUnitTest {
     @Test
     public void testSetGetLink() throws Exception {
         // Setup
-        RssItem item = new RssItem();
+        ParsedItem item = new ParsedItem();
         item.setLink("https://www.pokemon.nl");
 
         //Verify
@@ -62,7 +62,7 @@ public class RssItemUnitTest {
     @Test
     public void testSetGetImageUrl() throws Exception {
         // Setup
-        RssItem item = new RssItem();
+        ParsedItem item = new ParsedItem();
         item.setImageUrl("www.google.nl/image.png");
 
         //Verify

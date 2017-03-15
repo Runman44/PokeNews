@@ -1,20 +1,18 @@
 package nl.mranderson.pokefeeds.network;
 
 
-import com.rssreader.RssItem;
-
 import java.util.List;
 
-public class PokeNewsResponse {
+public class GenericResponse {
 
-    private List<RssItem> items;
+    private List<GenericItem> items;
     private Exception exception;
 
-    public List<RssItem> getItems() {
+    public List<GenericItem> getItems() {
         return items;
     }
 
-    public void setItems(List<RssItem> items) {
+    public void setItems(List<GenericItem> items) {
         this.items = items;
     }
 
