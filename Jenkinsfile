@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                 sh "./gradlew compileTestJava
+                 sh "./gradlew compileTestJava"
             }
         }
         stage('Test') {
