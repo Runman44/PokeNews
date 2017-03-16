@@ -11,8 +11,9 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh 'make check || true'
                 sh "./gradlew testDebugUnitTest"
-                junit keepLongStdio: true, testResults: '**/build/test-reports/*.xml'
+                junit testResults: '**/build/test-reports/*.xml'
             }
         }
         stage('Deploy') {
