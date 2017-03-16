@@ -12,6 +12,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh "./gradlew testDebugUnitTest"
+                junit keepLongStdio: true, testResults: '**/build/test-reports/*.xml'
             }
         }
         stage('Deploy') {
