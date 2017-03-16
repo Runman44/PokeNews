@@ -5,12 +5,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                 sh "./gradlew compileTestJava"
+                 sh "./gradlew assembleDebug"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh "./gradlew testDebugUnitTest"
             }
         }
         stage('Deploy') {
