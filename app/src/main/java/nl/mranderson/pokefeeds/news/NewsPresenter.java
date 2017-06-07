@@ -23,8 +23,6 @@ public class NewsPresenter implements NewsContract.Presenter {
     @Override
     public void attach(NewsContract.View view) {
         this.view = view;
-        this.view.setLoadingState();
-        this.model.getNews(CONTENT_URL, pokeNewsListener);
     }
 
     @Override
