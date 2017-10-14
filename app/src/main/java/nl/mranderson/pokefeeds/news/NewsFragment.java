@@ -1,7 +1,5 @@
 package nl.mranderson.pokefeeds.news;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,14 +18,10 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.List;
 
 import nl.mranderson.pokefeeds.R;
-import nl.mranderson.pokefeeds.interfaces.ListItemListener;
-import nl.mranderson.pokefeeds.network.GenericItem;
 
-//TODO butterknife
 //TODO Firebase analytics
 //TODO only update the new items? if I don't and do the whole list it will clean up the list.
-//TODO make sure the controller uses the correct fields.
-//TODO use MVP pattern.
+//TODO use SVG
 public class NewsFragment extends Fragment implements NewsContract.View {
 
     private SwipeRefreshLayout swipeLayout;
@@ -35,14 +29,14 @@ public class NewsFragment extends Fragment implements NewsContract.View {
     private RelativeLayout emptyLayout;
     private RelativeLayout exceptionLayout;
     private FirebaseAnalytics mFirebaseAnalytics;
-    protected RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
     private NewsPresenter presenter;
     private NewsAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_main, container, false);
+        return inflater.inflate(R.layout.fragment_list, container, false);
     }
 
     @Override
@@ -70,38 +64,17 @@ public class NewsFragment extends Fragment implements NewsContract.View {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new NewsAdapter(new ListItemListener() {
-            @Override
-            public void onItemTapped(String link) {
-                presenter.onItemLinkTapped(link);
-            }
-        });
+        mAdapter = new NewsAdapter(link -> presenter.onItemLinkTapped(link));
         mRecyclerView.setAdapter(mAdapter);
 
-        emptyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.onEmptyButtonTapped();
-            }
-        });
+        emptyButton.setOnClickListener(v -> presenter.onEmptyButtonTapped());
 
-        retryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.onRetryButtonTapped();
-            }
-        });
+        retryButton.setOnClickListener(v -> presenter.onRetryButtonTapped());
 
-        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                presenter.onRefreshSwiped();
-            }
-        });
+        swipeLayout.setOnRefreshListener(() -> presenter.onRefreshPulled());
 
         presenter = createPresenter();
         presenter.attach(this);
-        presenter.onLoadData();
     }
 
     @Override
@@ -111,11 +84,12 @@ public class NewsFragment extends Fragment implements NewsContract.View {
     }
 
     private NewsPresenter createPresenter() {
+        NewsNavigation newsNavigation = new NewsNavigationImpl(getActivity());
         NewsInteractor model = new NewsInteractorImpl();
-        return new NewsPresenter(model);
+        return new NewsPresenter(model, newsNavigation);
     }
 
-    public void setListState(List<GenericItem> items) {
+    public void showListState(List<NewsItem> items) {
         swipeLayout.setRefreshing(false);
         swipeLayout.setVisibility(View.VISIBLE);
         spinnerLayout.setVisibility(View.GONE);
@@ -125,35 +99,24 @@ public class NewsFragment extends Fragment implements NewsContract.View {
         mAdapter.update(items);
     }
 
-    public void setExceptionState() {
+    public void showExceptionState() {
         exceptionLayout.setVisibility(View.VISIBLE);
         swipeLayout.setVisibility(View.GONE);
         spinnerLayout.setVisibility(View.GONE);
         emptyLayout.setVisibility(View.GONE);
     }
 
-    public void setLoadingState() {
+    public void showLoadingState() {
         spinnerLayout.setVisibility(View.VISIBLE);
         swipeLayout.setVisibility(View.GONE);
         emptyLayout.setVisibility(View.GONE);
         exceptionLayout.setVisibility(View.GONE);
     }
 
-    public void setEmptyState() {
+    public void showEmptyState() {
         emptyLayout.setVisibility(View.VISIBLE);
         swipeLayout.setVisibility(View.GONE);
         spinnerLayout.setVisibility(View.GONE);
         exceptionLayout.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onReadMoreClicked(String link) {
-        try {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(link));
-            startActivity(intent);
-        } catch (Exception ex) {
-            setExceptionState();
-        }
     }
 }

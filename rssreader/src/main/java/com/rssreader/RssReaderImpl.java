@@ -7,10 +7,14 @@ import com.rssreader.youtube.Items;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.xml.sax.InputSource;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,34 +53,36 @@ public class RssReaderImpl implements RssReader {
     }
 
     @Override
-    public JSONArray getFromRssFeed(String url) throws Exception {
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        SAXParser saxParser = factory.newSAXParser();
-        RssHandler handler = new RssHandler();
-        saxParser.parse(url, handler);
-
+    public JSONArray getFromRssFeed(String feed) throws Exception {
         Gson gson = new Gson();
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        SAXParser sp = spf.newSAXParser();
+
+
+        RssHandler rh = new RssHandler();
+        sp.parse(new InputSource(new StringReader(feed)), rh);
+
         String element = gson.toJson(
-                handler.getParsedItemList(),
+                rh.getParsedItemList(),
                 new TypeToken<ArrayList<ParsedItem>>() {}.getType());
         return new JSONArray(element);
     }
 
     private static String readUrl(String urlString) throws Exception {
-        BufferedReader reader = null;
-        try {
             URL url = new URL(urlString);
-            reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            StringBuffer buffer = new StringBuffer();
-            int read;
-            char[] chars = new char[1024];
-            while ((read = reader.read(chars)) != -1)
-                buffer.append(chars, 0, read);
+            URLConnection uc = url.openConnection();
 
-            return buffer.toString();
-        } finally {
-            if (reader != null)
-                reader.close();
-        }
+            InputStream is = uc.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String line;
+            StringBuilder response = new StringBuilder();
+
+            while((line = br.readLine()) != null){
+                response.append(line);
+                response.append('\n');
+
+            }
+
+            return response.toString();
     }
 }

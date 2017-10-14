@@ -3,21 +3,17 @@ package nl.mranderson.pokefeeds.news;
 
 import java.util.List;
 
-import nl.mranderson.pokefeeds.network.GenericItem;
-
-public interface NewsContract {
+interface NewsContract {
 
     interface View {
 
-        void setLoadingState();
+        void showLoadingState();
 
-        void onReadMoreClicked(String link);
+        void showExceptionState();
 
-        void setExceptionState();
+        void showEmptyState();
 
-        void setEmptyState();
-
-        void setListState(List<GenericItem> items);
+        void showListState(List<NewsItem> items);
     }
 
     interface Presenter {
@@ -30,11 +26,10 @@ public interface NewsContract {
 
         void onRetryButtonTapped();
 
-        void onRefreshSwiped();
+        void onRefreshPulled();
 
         void onItemLinkTapped(String link);
 
-        void onLoadData();
     }
 
 }

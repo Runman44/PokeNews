@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">PokeFeed</string>
     <string name="read_more">Read More</string>
+    <string name="list_exception_title">Oops..</string>
+    <string name="list_empty_body">Seems like there is no news!</string>
+    <string name="list_exception_body">Seems like something went wrong!</string>
+    <string name="list_retry">Retry</string>
 </resources>

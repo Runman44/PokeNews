@@ -11,15 +11,14 @@ import java.util.List;
 
 import nl.mranderson.pokefeeds.R;
 import nl.mranderson.pokefeeds.interfaces.ListItemListener;
-import nl.mranderson.pokefeeds.network.GenericItem;
 
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsItemViewHolder> {
 
     private final ListItemListener listener;
-    private List<GenericItem> items = new ArrayList<>();
+    private List<NewsItem> items = new ArrayList<>();
 
-    public NewsAdapter(ListItemListener listener) {
+    NewsAdapter(ListItemListener listener) {
         this.listener = listener;
     }
 
@@ -31,16 +30,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsItemViewHo
 
     @Override
     public void onBindViewHolder(NewsItemViewHolder holder, int position) {
-        final GenericItem item = items.get(position);
+        final NewsItem item = items.get(position);
         holder.vTitle.setText(item.getTitle());
         holder.vDescription.setText(item.getDescription());
-        holder.vDate.setText(item.getPubDate());
-        holder.vLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onItemTapped(item.getLink());
-            }
-        });
+        holder.vDate.setText(item.getDate());
+        holder.vLink.setOnClickListener(v -> listener.onItemTapped(item.getLink()));
     }
 
     @Override
@@ -48,12 +42,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsItemViewHo
         return items.size();
     }
 
-    public void update(List<GenericItem> items) {
+    void update(List<NewsItem> items) {
         this.items = items;
         notifyDataSetChanged();
     }
 
-    public class NewsItemViewHolder extends RecyclerView.ViewHolder {
+    class NewsItemViewHolder extends RecyclerView.ViewHolder {
         TextView vTitle;
         TextView vDescription;
         TextView vDate;

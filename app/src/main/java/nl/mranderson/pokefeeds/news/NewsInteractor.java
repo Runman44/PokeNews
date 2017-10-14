@@ -1,8 +1,10 @@
 package nl.mranderson.pokefeeds.news;
 
-import nl.mranderson.pokefeeds.interfaces.DataLoadedListener;
+import java.util.List;
 
-public interface NewsInteractor {
-    void getNews(String url, DataLoadedListener listener);
+interface NewsInteractor {
+
+    List<NewsItem> getNews();
+
 }
 

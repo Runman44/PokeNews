@@ -60,12 +60,8 @@ public class VideoPresenter implements VideoContract.Presenter {
     }
 
     private void addPokeNewsListener() {
-        pokeNewsListener = new DataLoadedListener() {
-            @Override
-            public void onDataLoaded(GenericStatus status, List<GenericItem> items) {
-                handleData(status, items);
-            }
-        };
+        //TODO this is bad, fix with RxJava or..?
+        pokeNewsListener = (status, items) -> handleData(status, items);
     }
 
     private void handleData(GenericStatus status, List<GenericItem> items) {
@@ -73,14 +69,15 @@ public class VideoPresenter implements VideoContract.Presenter {
             case LOADING:
                 this.view.setLoadingState();
                 break;
-            case EXCEPTION:
-                this.view.setExceptionState();
-                break;
             case EMPTY:
                 this.view.setEmptyState();
                 break;
             case FINISHED:
                 this.view.setListState(items);
+                break;
+            case EXCEPTION:
+            default:
+                this.view.setExceptionState();
                 break;
         }
     }

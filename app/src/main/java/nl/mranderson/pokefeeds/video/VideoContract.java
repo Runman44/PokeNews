@@ -3,6 +3,7 @@ package nl.mranderson.pokefeeds.video;
 
 import java.util.List;
 
+import nl.mranderson.pokefeeds.interfaces.DataLoadedListener;
 import nl.mranderson.pokefeeds.network.GenericItem;
 
 public interface VideoContract {
@@ -36,6 +37,11 @@ public interface VideoContract {
         void onItemLinkTapped(String link);
 
         void onLoadData();
+    }
+
+    interface Interactor {
+
+        void getVideos(String url, DataLoadedListener listener);
     }
 
 }

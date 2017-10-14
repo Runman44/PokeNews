@@ -31,9 +31,9 @@ public class NewsInteractorTest {
 
     @Test
     public void addition_isCorrect2() throws Exception {
-        sut.getNews("", dataLoadedListener);
+        sut.getNews("http://bulbanews.bulbagarden.net/feed/news.rss", dataLoadedListener);
 
 //        verify(videoInteractor, times(1)).getVideos(anyString(), any(DataLoadedListener.class));
-//        verify(videoFragment, times(1)).setLoadingState();
+//        verify(videoFragment, times(1)).showLoadingState();
     }
 }

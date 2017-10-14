@@ -31,7 +31,7 @@ public class NewsPresenterTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        sut = new NewsPresenter(newsInteractor);
+        sut = new NewsPresenter(newsInteractor, newsNavigation);
         sut.attach(newsFragment);
     }
 
@@ -40,7 +40,7 @@ public class NewsPresenterTest {
         sut.onEmptyButtonTapped();
 
         verify(newsInteractor, times(1)).getNews(anyString(), any(DataLoadedListener.class));
-        verify(newsFragment, times(1)).setLoadingState();
+        verify(newsFragment, times(1)).showLoadingState();
     }
 
     @Test
@@ -48,12 +48,12 @@ public class NewsPresenterTest {
         sut.onRetryButtonTapped();
 
         verify(newsInteractor, times(1)).getNews(anyString(), any(DataLoadedListener.class));
-        verify(newsFragment, times(1)).setLoadingState();
+        verify(newsFragment, times(1)).showLoadingState();
     }
 
     @Test
     public void addition_isCorrect4() throws Exception {
-        sut.onRefreshSwiped();
+        sut.onRefreshPulled();
 
         verify(newsInteractor, times(1)).getNews(anyString(), any(DataLoadedListener.class));
     }
@@ -70,13 +70,13 @@ public class NewsPresenterTest {
         sut.onLoadData();
 
         verify(newsInteractor, times(1)).getNews(anyString(), any(DataLoadedListener.class));
-        verify(newsFragment, times(1)).setLoadingState();
+        verify(newsFragment, times(1)).showLoadingState();
     }
 
 //    @Test
 //    public void addition_isCorrect43e5() throws Exception {
 //        dataLoadedListener.onDataLoaded(GenericStatus.EXCEPTION, null);
 //
-//        verify(newsFragment, times(1)).setExceptionState();
+//        verify(newsFragment, times(1)).showExceptionState();
 //    }
 }

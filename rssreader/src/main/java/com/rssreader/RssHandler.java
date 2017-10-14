@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RssHandler extends DefaultHandler {
+
     private List<ParsedItem> parsedItemList;
     private ParsedItem currentItem;
     private boolean parsingTitle;
