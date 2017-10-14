@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "61644724130",
-    "firebase_url": "https://pokemongoproject.firebaseio.com",
-    "project_id": "pokemongoproject",
-    "storage_bucket": "pokemongoproject.appspot.com"
+    "project_number": "190435377863",
+    "firebase_url": "https://admob-app-id-2966655960.firebaseio.com",
+    "project_id": "admob-app-id-2966655960",
+    "storage_bucket": "admob-app-id-2966655960.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:61644724130:android:30bac4288cb4b95d",
+        "mobilesdk_app_id": "1:190435377863:android:ad3afc78b7256162",
         "android_client_info": {
-          "package_name": "nl.mranderson.pokefeeds"
+          "package_name": "nl.mranderson.sittingapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "61644724130-3usjj6otq5cs3qc6l632i0vd0i60s03u.apps.googleusercontent.com",
+          "client_id": "190435377863-0t50s11bi52t1jgvng0bmkbftqsukimr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "nl.mranderson.pokefeed",
-            "certificate_hash": "B0C80792E2CA8B756ACAF638E46EDC428EEC3F70"
+            "package_name": "nl.mranderson.sittingapp",
+            "certificate_hash": "362a33f709281ee74c7910d164e1da04fed04a6f"
           }
         },
         {
-          "client_id": "61644724130-vi7luo412jgi1felss7gqbqv0irkt4rj.apps.googleusercontent.com",
+          "client_id": "190435377863-776rp9p411lile5t3lq15am5nrvig14r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAyLgCc_hDLAa4h5l5xnRLO28N6versBkc"
+          "current_key": "AIzaSyBOhGhxJD2P-Kmybdw9nqsRWz4xt7BeGeY"
         }
       ],
       "services": {
@@ -37,13 +37,78 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "61644724130-vi7luo412jgi1felss7gqbqv0irkt4rj.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190435377863:android:e8722165d7d07715",
+        "android_client_info": {
+          "package_name": "nl.mranderson.dodge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190435377863-776rp9p411lile5t3lq15am5nrvig14r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOhGhxJD2P-Kmybdw9nqsRWz4xt7BeGeY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190435377863:android:2387d493a2f653fe",
+        "android_client_info": {
+          "package_name": "nl.mranderson.pokefeeds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190435377863-h6ng74rko225pj5fr7teo2vpqulo1uvj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nl.mranderson.pokefeeds",
+            "certificate_hash": "b0c80792e2ca8b756acaf638e46edc428eec3f70"
+          }
+        },
+        {
+          "client_id": "190435377863-776rp9p411lile5t3lq15am5nrvig14r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOhGhxJD2P-Kmybdw9nqsRWz4xt7BeGeY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

@@ -13,13 +13,10 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
-
 import java.util.List;
 
 import nl.mranderson.pokefeeds.R;
 
-//TODO Firebase analytics
 //TODO only update the new items? if I don't and do the whole list it will clean up the list.
 //TODO use SVG
 public class NewsFragment extends Fragment implements NewsContract.View {
@@ -28,7 +25,6 @@ public class NewsFragment extends Fragment implements NewsContract.View {
     private ProgressBar spinnerLayout;
     private RelativeLayout emptyLayout;
     private RelativeLayout exceptionLayout;
-    private FirebaseAnalytics mFirebaseAnalytics;
     private RecyclerView mRecyclerView;
     private NewsPresenter presenter;
     private NewsAdapter mAdapter;
@@ -42,9 +38,6 @@ public class NewsFragment extends Fragment implements NewsContract.View {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // Obtain the FirebaseAnalytics instance.
-//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
 
         mRecyclerView = (RecyclerView) getView().findViewById(R.id.list);
         swipeLayout = (SwipeRefreshLayout) getView().findViewById(R.id.swipe_container);
