@@ -1,13 +1,10 @@
 package com.rssreader;
 
 import org.json.JSONArray;
-import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import static org.junit.Assert.assertEquals;
 
 public class ParsingUnitTest {
 

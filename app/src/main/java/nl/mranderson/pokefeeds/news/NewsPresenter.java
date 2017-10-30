@@ -2,17 +2,15 @@ package nl.mranderson.pokefeeds.news;
 
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import nl.mranderson.pokefeeds.news.data.NewsRepository;
 
 public class NewsPresenter implements NewsContract.Presenter {
 
-    private final NewsInteractor model;
+    private final NewsRepository<NewsItem> model;
     private NewsNavigation navigation;
     private NewsContract.View view;
 
-    NewsPresenter(NewsInteractor model, NewsNavigation newsNavigation) {
+    NewsPresenter(NewsRepository<NewsItem> model, NewsNavigation newsNavigation) {
         this.model = model;
         this.navigation = newsNavigation;
     }
@@ -51,22 +49,26 @@ public class NewsPresenter implements NewsContract.Presenter {
         this.navigation.openDetailedPage(link);
     }
 
+    //TODO this should be in repo right? this is business logic bcs if you rotate this call will be done again. Even more so, its specific for a network call right?
     private void getNews() {
-        final Observable<List<NewsItem>> serverDownloadObservable = Observable.create(emitter -> {
-
-            try {
-                List<NewsItem> newsItems = this.model.getNews();
-                emitter.onNext(newsItems);
-                emitter.onComplete();
-            } catch (Exception e) {
-                emitter.onError(e);
-            }
-        });
-
-        serverDownloadObservable.
-                observeOn(AndroidSchedulers.mainThread()).
-                subscribeOn(Schedulers.io()).
-                subscribe(this::onLoadFinished);
+        List<NewsItem> all = this.model.getAll();
+        onLoadFinished(all);
+        //TODO can use Single then right?
+//        final Observable<List<NewsItem>> serverDownloadObservable = Observable.create(emitter -> {
+//
+//            try {
+        //TODO why is this here? should some thing not be a observable?
+//                List<NewsItem> newsItems = this.model.getAll();
+//                emitter.onNext(newsItems);
+//                emitter.onComplete();
+//            } catch (Exception e) {
+//                emitter.onError(e);
+//            }
+//        });
+//        serverDownloadObservable.
+//                observeOn(AndroidSchedulers.mainThread()).
+//                subscribeOn(Schedulers.io()).
+//                subscribe(this::onLoadFinished);
     }
 
     private void onLoadFinished(List<NewsItem> result) {

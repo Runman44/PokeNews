@@ -12,7 +12,6 @@ import java.util.List;
 import nl.mranderson.pokefeeds.R;
 import nl.mranderson.pokefeeds.interfaces.ListItemListener;
 
-
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsItemViewHolder> {
 
     private final ListItemListener listener;
@@ -31,10 +30,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsItemViewHo
     @Override
     public void onBindViewHolder(NewsItemViewHolder holder, int position) {
         final NewsItem item = items.get(position);
-        holder.vTitle.setText(item.getTitle());
-        holder.vDescription.setText(item.getDescription());
-        holder.vDate.setText(item.getDate());
-        holder.vLink.setOnClickListener(v -> listener.onItemTapped(item.getLink()));
+        holder.title.setText(item.getTitle());
+        holder.description.setText(item.getDescription());
+        holder.date.setText(item.getDate());
+        holder.link.setOnClickListener(v -> listener.onItemTapped(item.getLink()));
     }
 
     @Override
@@ -48,17 +47,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsItemViewHo
     }
 
     class NewsItemViewHolder extends RecyclerView.ViewHolder {
-        TextView vTitle;
-        TextView vDescription;
-        TextView vDate;
-        TextView vLink;
+        private TextView title;
+        private TextView description;
+        private TextView date;
+        private TextView link;
 
-        NewsItemViewHolder(View v) {
-            super(v);
-            vTitle = (TextView) v.findViewById(R.id.title_text);
-            vDescription = (TextView) v.findViewById(R.id.description_text);
-            vDate = (TextView) v.findViewById(R.id.date_text);
-            vLink = (TextView) v.findViewById(R.id.link_text);
+        NewsItemViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.title_text);
+            description = (TextView) view.findViewById(R.id.description_text);
+            date = (TextView) view.findViewById(R.id.date_text);
+            link = (TextView) view.findViewById(R.id.link_text);
         }
     }
 }

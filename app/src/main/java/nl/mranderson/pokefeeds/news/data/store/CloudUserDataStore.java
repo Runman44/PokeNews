@@ -1,7 +1,4 @@
-package nl.mranderson.pokefeeds.news;
-
-
-import android.support.annotation.Nullable;
+package nl.mranderson.pokefeeds.news.data.store;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -15,16 +12,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import nl.mranderson.pokefeeds.news.NewsItem;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class NewsInteractorImpl implements NewsInteractor {
-
+public class CloudUserDataStore implements NewsDataStore {
 
     @Override
-    @Nullable
-    public List<NewsItem> getNews() {
+    public List<NewsItem> get() {
         List<NewsItem> newsItems;
         RssReader rssReader = new RssReaderImpl();
         Gson gson = new Gson();

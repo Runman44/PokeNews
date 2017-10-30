@@ -9,7 +9,7 @@ public class NewsItem {
     @SerializedName("pubDate")
     private String date;
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 
@@ -21,7 +21,7 @@ public class NewsItem {
         return link;
     }
 
-    public String getDate() {
+    String getDate() {
         return date;
     }
 

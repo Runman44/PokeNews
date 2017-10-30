@@ -61,7 +61,7 @@ public class VideoPresenter implements VideoContract.Presenter {
 
     private void addPokeNewsListener() {
         //TODO this is bad, fix with RxJava or..?
-        pokeNewsListener = (status, items) -> handleData(status, items);
+        pokeNewsListener = this::handleData;
     }
 
     private void handleData(GenericStatus status, List<GenericItem> items) {

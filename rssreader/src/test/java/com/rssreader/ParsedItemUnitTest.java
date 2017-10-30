@@ -1,10 +1,6 @@
 package com.rssreader;
 
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-
 public class ParsedItemUnitTest {
 
     @Test

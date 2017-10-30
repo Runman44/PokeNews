@@ -43,12 +43,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.NewsItemView
                 .fit()
                 .centerCrop()
                 .into(holder.vImage);
-        holder.vImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onItemTapped(item.getLink());
-            }
-        });
+        holder.vImage.setOnClickListener(v -> listener.onItemTapped(item.getLink()));
     }
 
     @Override

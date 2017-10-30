@@ -32,22 +32,19 @@ public class VideoInteractor implements VideoContract.Interactor {
         this.listener = listener;
         ExecutorService pool = Executors.newFixedThreadPool(1);
 
-        Callable<GenericResponse> callable = new Callable<GenericResponse>() {
-            @Override
-            public GenericResponse call() throws Exception {
-                GenericResponse response = new GenericResponse();
-                try {
-                    RssReader rssReader = new RssReaderImpl();
-                    final JSONArray items = rssReader.getFromYoutube(url);
-                    Gson gson = new Gson();
-                    Collection<GenericItem> data = gson.fromJson(items.toString(), new TypeToken<Collection<GenericItem>>(){}.getType());
-                    List<GenericItem> myNodeList = new ArrayList<>(data);
-                    response.setItems(myNodeList);
-                } catch (Exception ex) {
-                    response.setException(ex);
-                }
-                return response;
+        Callable<GenericResponse> callable = () -> {
+            GenericResponse response = new GenericResponse();
+            try {
+                RssReader rssReader = new RssReaderImpl();
+                final JSONArray items = rssReader.getFromYoutube(url);
+                Gson gson = new Gson();
+                Collection<GenericItem> data = gson.fromJson(items.toString(), new TypeToken<Collection<GenericItem>>(){}.getType());
+                List<GenericItem> myNodeList = new ArrayList<>(data);
+                response.setItems(myNodeList);
+            } catch (Exception ex) {
+                response.setException(ex);
             }
+            return response;
         };
 
         Future<GenericResponse> future = pool.submit(callable);

@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setupTabIcons(tabLayout);
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void setupTabIcons(TabLayout tabLayout) {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_videocam);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_format_list);

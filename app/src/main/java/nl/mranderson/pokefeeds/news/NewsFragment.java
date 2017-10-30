@@ -16,6 +16,8 @@ import android.widget.RelativeLayout;
 import java.util.List;
 
 import nl.mranderson.pokefeeds.R;
+import nl.mranderson.pokefeeds.news.data.NewsDataRepository;
+import nl.mranderson.pokefeeds.news.data.NewsRepository;
 
 //TODO only update the new items? if I don't and do the whole list it will clean up the list.
 //TODO use SVG
@@ -28,6 +30,8 @@ public class NewsFragment extends Fragment implements NewsContract.View {
     private RecyclerView mRecyclerView;
     private NewsPresenter presenter;
     private NewsAdapter mAdapter;
+    private Button retryButton;
+    private Button emptyButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +40,7 @@ public class NewsFragment extends Fragment implements NewsContract.View {
     }
 
     @Override
+    @SuppressWarnings({"ConstantConditions"})
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -44,27 +49,16 @@ public class NewsFragment extends Fragment implements NewsContract.View {
         spinnerLayout = (ProgressBar) getView().findViewById(R.id.spinner);
         emptyLayout = (RelativeLayout) getView().findViewById(R.id.empty_container);
         exceptionLayout = (RelativeLayout) getView().findViewById(R.id.exception_container);
-        Button retryButton = (Button) getView().findViewById(R.id.exception_button);
-        Button emptyButton = (Button) getView().findViewById(R.id.empty_button);
+        retryButton = (Button) getView().findViewById(R.id.exception_button);
+        emptyButton = (Button) getView().findViewById(R.id.empty_button);
 
         swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setHasFixedSize(true);
-
-        mAdapter = new NewsAdapter(link -> presenter.onItemLinkTapped(link));
-        mRecyclerView.setAdapter(mAdapter);
-
-        emptyButton.setOnClickListener(v -> presenter.onEmptyButtonTapped());
-
-        retryButton.setOnClickListener(v -> presenter.onRetryButtonTapped());
-
-        swipeLayout.setOnRefreshListener(() -> presenter.onRefreshPulled());
+        setList();
+        setListeners();
 
         presenter = createPresenter();
         presenter.attach(this);
@@ -76,9 +70,27 @@ public class NewsFragment extends Fragment implements NewsContract.View {
         presenter.detach();
     }
 
+    private void setList() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+
+        mAdapter = new NewsAdapter(link -> presenter.onItemLinkTapped(link));
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void setListeners() {
+        emptyButton.setOnClickListener(v -> presenter.onEmptyButtonTapped());
+
+        retryButton.setOnClickListener(v -> presenter.onRetryButtonTapped());
+
+        swipeLayout.setOnRefreshListener(() -> presenter.onRefreshPulled());
+    }
+
     private NewsPresenter createPresenter() {
         NewsNavigation newsNavigation = new NewsNavigationImpl(getActivity());
-        NewsInteractor model = new NewsInteractorImpl();
+        NewsRepository<NewsItem> model =  NewsDataRepository.getInstance();
         return new NewsPresenter(model, newsNavigation);
     }
 
