@@ -1,1 +1,3 @@
-include ':app', ':rssreader'
+include ':pokefeed', ':MRA-HTTP'
+include ':MRA-RssReader'
+

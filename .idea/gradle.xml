@@ -9,8 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/rssreader" />
+            <option value="$PROJECT_DIR$/MRA-HTTP" />
+            <option value="$PROJECT_DIR$/MRA-RssReader" />
+            <option value="$PROJECT_DIR$/pokefeed" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
