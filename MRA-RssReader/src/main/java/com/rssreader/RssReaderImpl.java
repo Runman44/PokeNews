@@ -67,6 +67,7 @@ public class RssReaderImpl implements RssReader {
         return new JSONArray(element);
     }
 
+    //TODO dont do this.
     private static String readUrl(String urlString) throws Exception {
             URL url = new URL(urlString);
             URLConnection uc = url.openConnection();
