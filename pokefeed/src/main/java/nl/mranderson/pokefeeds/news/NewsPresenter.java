@@ -1,7 +1,5 @@
 package nl.mranderson.pokefeeds.news;
 
-import java.util.List;
-
 public class NewsPresenter implements NewsContract.Presenter {
 
     private final NewsInteractor useCase;
@@ -48,12 +46,11 @@ public class NewsPresenter implements NewsContract.Presenter {
     }
 
     private void getNews() {
-        //TODO logicin the interactor?
-        List<NewsItem> newsItems = useCase.getNewsItems();
-        if (newsItems != null && newsItems.size() > 0) {
-            view.showListState(newsItems);
-        } else {
+//        List<NewsItem> newsItems = useCase.getNewsItems();
+//        if (newsItems != null && newsItems.size() > 0) {
+//            view.showListState(newsItems);
+//        } else {
             view.showEmptyState();
-        }
+//        }
     }
 }

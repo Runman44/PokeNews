@@ -81,4 +81,12 @@ public class VideoPresenter implements VideoContract.Presenter {
                 break;
         }
     }
+
+    public void start() {
+
+    }
+
+    public void clear() {
+        //TODO set to null
+    }
 }

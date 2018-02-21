@@ -1,6 +1,8 @@
 package nl.mranderson.pokefeeds.network;
 
 
+import com.google.gson.Gson;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -14,4 +16,13 @@ public class NetworkModule {
     OkHttpClient provideOkHttpClient(){
         return new OkHttpClient();
     }
+
+    @Provides @Singleton
+    Gson provideGson(){
+        return new Gson();
+    }
+
+
+
+
 }

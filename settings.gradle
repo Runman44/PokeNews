@@ -1,3 +1,4 @@
-include ':pokefeed', ':MRA-HTTP'
+include ':pokefeed'
+include ':MRA-HTTP'
 include ':MRA-RssReader'
 

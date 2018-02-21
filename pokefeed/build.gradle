@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'io.fabric'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.2'
     defaultConfig {
         applicationId "nl.mranderson.pokefeeds"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 14
         versionName "1.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -18,7 +18,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -26,25 +25,26 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile project(':MRA-RssReader')
-    compile project(':MRA-HTTP')
+    implementation project(':MRA-RssReader')
+    implementation project(':MRA-HTTP')
 
-    compile "com.android.support:appcompat-v7:$google_support_version"
-    compile "com.android.support:recyclerview-v7:$google_support_version"
-    compile "com.android.support:design:$google_support_version"
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
-    compile "com.android.support:cardview-v7:$google_support_version"
+    implementation "com.android.support:appcompat-v7:$google_support_version"
+    implementation "com.android.support:recyclerview-v7:$google_support_version"
+    implementation "com.android.support:design:$google_support_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
+    implementation "com.android.support:cardview-v7:$google_support_version"
+    implementation "android.arch.lifecycle:extensions:$architecture_components_version"
 
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
     // Dagger 2
-    compile "com.google.dagger:dagger:$dagger_version"
-    compile "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
-
 
     // Unit test
     testCompile 'junit:junit:4.12'

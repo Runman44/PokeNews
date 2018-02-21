@@ -1,6 +1,5 @@
 package com.rssreader;
 
-
 import org.json.JSONArray;
 
 public interface RssReader {

@@ -16,11 +16,9 @@ import android.widget.RelativeLayout;
 import java.util.List;
 
 import nl.mranderson.pokefeeds.R;
-import nl.mranderson.pokefeeds.news.data.NewsDataRepository;
-import nl.mranderson.pokefeeds.news.data.NewsRepository;
 
-//TODO only update the new items? if I don't and do the whole list it will clean up the list.
-//TODO composite adapter for ads?
+//TODO only update the new items? if I don't and do the whole list it will clean up the list. DIFFUTILS
+//TODO composite adapter for ads? perhaps.
 public class NewsFragment extends Fragment implements NewsContract.View {
 
     private SwipeRefreshLayout swipeLayout;
@@ -90,8 +88,8 @@ public class NewsFragment extends Fragment implements NewsContract.View {
 
     private NewsPresenter createPresenter() {
         NewsNavigation newsNavigation = new NewsNavigationImpl(getActivity());
-        NewsRepository<NewsItem> repository =  NewsDataRepository.getInstance();
-        NewsInteractor newsInteractor = new NewsInteractor(repository);
+//        ItemRepository<NewsItem> repository =  ItemDataRepository.getInstance();
+        NewsInteractor newsInteractor = new NewsInteractor();
         return new NewsPresenter(newsInteractor, newsNavigation);
     }
 
