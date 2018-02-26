@@ -15,13 +15,13 @@ import java.util.List;
 
 import nl.mranderson.pokefeeds.R;
 import nl.mranderson.pokefeeds.interfaces.ListItemListener;
-import nl.mranderson.pokefeeds.network.GenericItem;
+import nl.mranderson.pokefeeds.video.model.Video;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.NewsItemViewHolder> {
 
     private final Context context;
     private final ListItemListener listener;
-    private List<GenericItem> items = new ArrayList<>();
+    private List<Video> items = new ArrayList<>();
 
     public VideoAdapter(Context context, ListItemListener listener) {
         this.context = context;
@@ -36,7 +36,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.NewsItemView
 
     @Override
     public void onBindViewHolder(NewsItemViewHolder holder, int position) {
-        final GenericItem item = items.get(position);
+        final Video item = items.get(position);
         holder.vTitle.setText(item.getTitle());
         Picasso.with(context)
                 .load(item.getImageUrl())
@@ -51,7 +51,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.NewsItemView
         return items.size();
     }
 
-    public void update(List<GenericItem> items) {
+    public void update(List<Video> items) {
         this.items = items;
         notifyDataSetChanged();
     }
@@ -62,8 +62,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.NewsItemView
 
         NewsItemViewHolder(View v) {
             super(v);
-            vTitle = (TextView) v.findViewById(R.id.title_text);
-            vImage = (ImageView) v.findViewById(R.id.item_image);
+            vTitle = v.findViewById(R.id.title_text);
+            vImage = v.findViewById(R.id.item_image);
         }
     }
 }
