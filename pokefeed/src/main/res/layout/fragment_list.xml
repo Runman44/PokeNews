@@ -6,139 +6,153 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--items state-->
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_container"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
+        android:layout_height="match_parent">
 
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_list"
-        app:layout_constraintLeft_toLeftOf="@+id/fragment_list"
-        app:layout_constraintRight_toRightOf="@+id/fragment_list"
-        app:layout_constraintTop_toTopOf="@+id/fragment_list">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/list"
-            android:layoutAnimation="@anim/layout_animation_fall_down"
+        <!--items state-->
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp" />
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_list"
+            app:layout_constraintLeft_toLeftOf="@+id/fragment_list"
+            app:layout_constraintRight_toRightOf="@+id/fragment_list"
+            app:layout_constraintTop_toTopOf="@+id/fragment_list">
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layoutAnimation="@anim/layout_animation_fall_down" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
 
 
-    <!--empty state-->
-    <RelativeLayout
-        android:id="@+id/empty_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_list"
-        app:layout_constraintLeft_toLeftOf="@+id/fragment_list"
-        app:layout_constraintRight_toRightOf="@+id/fragment_list"
-        app:layout_constraintTop_toTopOf="@+id/fragment_list">
+        <!--empty state-->
+        <RelativeLayout
+            android:id="@+id/empty_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_list"
+            app:layout_constraintLeft_toLeftOf="@+id/fragment_list"
+            app:layout_constraintRight_toRightOf="@+id/fragment_list"
+            app:layout_constraintTop_toTopOf="@+id/fragment_list">
 
-        <TextView
-            android:id="@+id/title_empty_list"
+            <TextView
+                android:id="@+id/title_empty_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/description_empty_list"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-thin"
+                android:paddingBottom="8dp"
+                android:text="@string/list_exception_title"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Oops.." />
+
+            <TextView
+                android:id="@+id/description_empty_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/empty_button"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-thin"
+                android:paddingBottom="8dp"
+                android:text="@string/list_empty_body"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Seems like there is no news!" />
+
+            <Button
+                android:id="@+id/empty_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/list_retry"
+                tools:text="Retry" />
+        </RelativeLayout>
+
+        <!--exception state-->
+        <RelativeLayout
+            android:id="@+id/exception_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/title_exception_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/description_exception_list"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-thin"
+                android:paddingBottom="8dp"
+                android:text="@string/list_exception_title"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Oops.." />
+
+            <TextView
+                android:id="@+id/description_exception_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/exception_button"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-thin"
+                android:paddingBottom="8dp"
+                android:text="@string/list_exception_body"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Seems like something went wrong!" />
+
+            <Button
+                android:id="@+id/exception_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/list_retry"
+                tools:text="Retry" />
+        </RelativeLayout>
+
+        <!--loading state-->
+        <ProgressBar
+            android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/description_empty_list"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-thin"
-            android:paddingBottom="8dp"
-            android:text="@string/list_exception_title"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="Oops.." />
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_list"
+            app:layout_constraintLeft_toLeftOf="@+id/fragment_list"
+            app:layout_constraintRight_toRightOf="@+id/fragment_list"
+            app:layout_constraintTop_toTopOf="@+id/fragment_list" />
 
-        <TextView
-            android:id="@+id/description_empty_list"
+        <!-- Floating button -->
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/empty_button"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-thin"
-            android:paddingBottom="8dp"
-            android:text="@string/list_empty_body"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Seems like there is no news!" />
+            android:layout_gravity="bottom|end"
+            android:layout_margin="24dp"
+            android:src="@drawable/ic_reddit"
+            app:layout_behavior="nl.mranderson.pokefeeds.FloatingActionButtonBehavior" />
 
-        <Button
-            android:id="@+id/empty_button"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/list_retry"
-            tools:text="Retry" />
-    </RelativeLayout>
-
-    <!--exception state-->
-    <RelativeLayout
-        android:id="@+id/exception_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/title_exception_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/description_exception_list"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-thin"
-            android:paddingBottom="8dp"
-            android:text="@string/list_exception_title"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="Oops.." />
-
-        <TextView
-            android:id="@+id/description_exception_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/exception_button"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-thin"
-            android:paddingBottom="8dp"
-            android:text="@string/list_exception_body"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Seems like something went wrong!" />
-
-        <Button
-            android:id="@+id/exception_button"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/list_retry"
-            tools:text="Retry" />
-    </RelativeLayout>
-
-    <!--loading state-->
-    <ProgressBar
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_list"
-        app:layout_constraintLeft_toLeftOf="@+id/fragment_list"
-        app:layout_constraintRight_toRightOf="@+id/fragment_list"
-        app:layout_constraintTop_toTopOf="@+id/fragment_list" />
-
+    </android.support.design.widget.CoordinatorLayout>
 </android.support.constraint.ConstraintLayout>

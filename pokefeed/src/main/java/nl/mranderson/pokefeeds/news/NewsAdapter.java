@@ -11,6 +11,7 @@ import java.util.List;
 
 import nl.mranderson.pokefeeds.R;
 import nl.mranderson.pokefeeds.interfaces.ListItemListener;
+import nl.mranderson.pokefeeds.news.model.NewsItem;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsItemViewHolder> {
 
@@ -33,7 +34,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsItemViewHo
         holder.title.setText(item.getTitle());
         holder.description.setText(item.getDescription());
         holder.date.setText(item.getDate());
-        holder.link.setOnClickListener(v -> listener.onItemTapped(item.getLink()));
+//        holder.link.setOnClickListener(v -> listener.onItemTapped(item.getLink()));
     }
 
     @Override
@@ -50,14 +51,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsItemViewHo
         private TextView title;
         private TextView description;
         private TextView date;
-        private TextView link;
+//        private TextView link;
 
         NewsItemViewHolder(View view) {
             super(view);
-            title = view.findViewById(R.id.title_text);
-            description = view.findViewById(R.id.description_text);
-            date = view.findViewById(R.id.date_text);
-            link = view.findViewById(R.id.link_text);
+            date = view.findViewById(R.id.title_text);
+            title = view.findViewById(R.id.description_text_title);
+            description = view.findViewById(R.id.description_text_description);
+//            date = view.findViewById(R.id.date_text);
+//            link = view.findViewById(R.id.link_text);
         }
     }
 }

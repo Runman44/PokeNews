@@ -1,4 +1,4 @@
-package nl.mranderson.pokefeeds.news;
+package nl.mranderson.pokefeeds.news.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -16,7 +16,7 @@ public class NewsItem {
         this.date = date;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -28,7 +28,7 @@ public class NewsItem {
         return link;
     }
 
-    String getDate() {
+    public String getDate() {
         return date;
     }
 }

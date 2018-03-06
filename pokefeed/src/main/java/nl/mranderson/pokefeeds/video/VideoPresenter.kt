@@ -18,7 +18,7 @@ class VideoPresenter(private val videoViewState: VideoViewState, private val mod
                 .subscribe(this::handleResponse, this::handleException)
     }
 
-    fun clear() {
+    override fun clear() {
         disposable.dispose()
     }
 
@@ -40,23 +40,23 @@ class VideoPresenter(private val videoViewState: VideoViewState, private val mod
         videoViewState.isFailed.postValue(true)
     }
 
-    fun onItemLinkTapped(link: String?) {
+    override fun onItemLinkTapped(link: String) {
         videoViewState.flowStep.postValue(FlowStep.External(link))
     }
 
-    fun onEmptyButtonTapped() {
+    override fun onEmptyButtonTapped() {
         videoViewState.isLoading.postValue(true)
         videoViewState.isEmpty.postValue(false)
         start()
     }
 
-    fun onRetryButtonTapped() {
+    override fun onRetryButtonTapped() {
         videoViewState.isLoading.postValue(true)
         videoViewState.isFailed.postValue(false)
         start()
     }
 
-    fun onRefreshSwiped() {
+    override fun onRefreshPulled() {
         start()
     }
 }

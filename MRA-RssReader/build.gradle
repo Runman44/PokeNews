@@ -6,5 +6,6 @@ dependencies {
 
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'org.jsoup:jsoup:1.9.2'
+    implementation 'junit:junit:4.12'
 }
 

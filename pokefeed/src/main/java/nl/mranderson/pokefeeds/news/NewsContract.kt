@@ -1,9 +1,8 @@
-package nl.mranderson.pokefeeds.video
-
+package nl.mranderson.pokefeeds.news
 
 import io.reactivex.Single
 
-interface VideoContract {
+internal interface NewsContract {
 
     interface Presenter {
 
@@ -19,6 +18,7 @@ interface VideoContract {
     }
 
     interface Interactor {
-        fun getVideos(url: String): Single<*>
+        fun getNews(url: String): Single<NewsResponse>
     }
+
 }

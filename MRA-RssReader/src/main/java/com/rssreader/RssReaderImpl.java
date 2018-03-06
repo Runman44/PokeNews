@@ -54,12 +54,13 @@ public class RssReaderImpl implements RssReader {
     @Override
     public JSONArray getFromRssFeed(String feed) throws Exception {
         Gson gson = new Gson();
+        String s = readUrl(feed);
         SAXParserFactory spf = SAXParserFactory.newInstance();
         SAXParser sp = spf.newSAXParser();
 
 
         RssHandler rh = new RssHandler();
-        sp.parse(new InputSource(new StringReader(feed)), rh);
+        sp.parse(new InputSource(new StringReader(s)), rh);
 
         String element = gson.toJson(
                 rh.getParsedItemList(),

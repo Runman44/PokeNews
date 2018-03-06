@@ -13,14 +13,17 @@
         <RelativeLayout
             android:id="@+id/relativeContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#d7d7d7">
 
             <TextView
                 android:id="@+id/title_text"
-                style="@style/ImageTitle"
-                android:lines="3"
-                android:textSize="16sp"
-                tools:text="test" />
+                style="@style/NewsImageTitle"
+                android:lines="2"
+                android:ellipsize="end"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimaryText"
+                tools:text="12 Feb 2017" />
 
         </RelativeLayout>
 
@@ -30,47 +33,27 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/description_text"
+                android:id="@+id/description_text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="6dp"
                 android:paddingEnd="8dp"
+                android:textSize="18sp"
                 android:paddingStart="8dp"
-                android:paddingTop="8dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="8dp"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:paddingTop="6dp">
+                android:textStyle="bold"
+                android:paddingTop="8dp"
+                tools:text="The real title"/>
 
             <TextView
-                android:id="@+id/link_text"
+                android:id="@+id/description_text_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-thin"
-                android:gravity="start"
-                android:text="@string/read_more"
-                android:textAllCaps="true"
-                android:textColor="@color/colorAccent"
+                android:paddingBottom="6dp"
+                android:paddingEnd="8dp"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                tools:text="Read more" />
-
-            <TextView
-                android:id="@+id/date_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-thin"
-                android:gravity="end"
-                android:textColor="@color/colorSecondaryText"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                tools:text="Date" />
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                tools:text="Description"/>
         </LinearLayout>
 
     </LinearLayout>
