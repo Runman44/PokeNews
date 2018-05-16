@@ -4,7 +4,6 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import nl.mranderson.pokefeeds.news.NewsPresenter
-import nl.mranderson.pokefeeds.video.model.FlowStep
 
 
 class NewsViewState {

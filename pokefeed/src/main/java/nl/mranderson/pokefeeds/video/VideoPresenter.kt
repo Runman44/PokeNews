@@ -1,60 +1,49 @@
 package nl.mranderson.pokefeeds.video
 
 import io.reactivex.Scheduler
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import nl.mranderson.pokefeeds.video.model.FlowStep
+import nl.mranderson.pokefeeds.video.model.Video
+import nl.mranderson.pokefeeds.video.model.VideoState
 import nl.mranderson.pokefeeds.video.model.VideoViewState
 
-class VideoPresenter(private val videoViewState: VideoViewState, private val model: VideoService, private val presenterScheduler: Scheduler) : VideoContract.Presenter {
+class VideoPresenter(private val videoViewState: VideoViewState, private val model: VideoService, private val presenterScheduler: Scheduler) {
 
     private val url = "https://www.googleapis.com/youtube/v3/search?part=snippet&fields=items(id(videoId),snippet(title,publishedAt,thumbnails(high(url))))&q=pokemon&type=video&order=date&relevanceLanguage=en-us&max-results=10&key=AIzaSyDlS5wq_ZDcOsHENER-5tsYPej6T3ziNT4&maxResults=25"
-    private lateinit var disposable: Disposable
+    private var disposable = CompositeDisposable()
 
     fun start() {
-        disposable = model.getVideos(url)
+        disposable.add(model.getVideos(url)
                 .observeOn(presenterScheduler)
-                .subscribe(this::handleResponse, this::handleException)
+                .subscribe(this::handleResponse, this::handleException))
     }
 
-    override fun clear() {
-        disposable.dispose()
+    fun clear() {
+        disposable.clear()
     }
 
-    private fun handleResponse(videoResponse: VideoResponse) {
-        videoViewState.isLoading.postValue(false)
-        val items = videoResponse.items
-        if (videoResponse.exception != null) {
-            videoViewState.isFailed.postValue(true)
-        }
-        if (items != null && items.isNotEmpty()) {
-            videoViewState.data.postValue(items)
-        } else {
-            videoViewState.isEmpty.postValue(true)
-        }
+    private fun handleResponse(videoResponse: List<Video>) {
+        videoViewState.switchState(VideoState.Done(videoResponse))
     }
 
     private fun handleException(throwable: Throwable) {
-        videoViewState.isLoading.postValue(false)
-        videoViewState.isFailed.postValue(true)
+        videoViewState.switchState(VideoState.Error(throwable))
     }
 
-    override fun onItemLinkTapped(link: String) {
-        videoViewState.flowStep.postValue(FlowStep.External(link))
+    //TODO
+    fun onItemLinkTapped(link: String) {
+//        videoViewState.flowStep.postValue(FlowStep.External(link))
     }
 
-    override fun onEmptyButtonTapped() {
-        videoViewState.isLoading.postValue(true)
-        videoViewState.isEmpty.postValue(false)
+    fun onEmptyButtonTapped() {
         start()
     }
 
-    override fun onRetryButtonTapped() {
-        videoViewState.isLoading.postValue(true)
-        videoViewState.isFailed.postValue(false)
+    fun onRetryButtonTapped() {
         start()
     }
 
-    override fun onRefreshPulled() {
+    fun onRefreshPulled() {
         start()
     }
 }

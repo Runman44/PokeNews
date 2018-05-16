@@ -29,8 +29,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layoutAnimation="@anim/layout_animation_fall_down" />
+                android:layout_marginTop="8dp" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

@@ -1,4 +1,3 @@
 include ':pokefeed'
-include ':MRA-HTTP'
 include ':MRA-RssReader'
 

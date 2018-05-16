@@ -4,7 +4,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import nl.mranderson.pokefeeds.news.model.NewsViewState
-import nl.mranderson.pokefeeds.video.model.FlowStep
 
 class NewsPresenter(private val viewState: NewsViewState, private val model: NewsInteractor) : NewsContract.Presenter {
 

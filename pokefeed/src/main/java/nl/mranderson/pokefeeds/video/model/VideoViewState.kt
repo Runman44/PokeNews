@@ -9,19 +9,19 @@ import nl.mranderson.pokefeeds.video.VideoPresenter
 
 class VideoViewState {
 
-    //TODO learn today.
-    var isLoading = MutableLiveData<Boolean>()
-    var isFailed = MutableLiveData<Boolean>()
-    var data = MutableLiveData<List<Video>>()
-    var flowStep = MutableLiveData<FlowStep>()
-    val isEmpty = MutableLiveData<Boolean>()
+    var currentState = MutableLiveData<VideoState>()
 
+    fun switchState(newState: VideoState) {
+        currentState.value = newState
+    }
 }
 
 @Suppress("UNCHECKED_CAST")
-class VideoViewModelFactory(private val videoService: VideoService, private val videoViewState: VideoViewState, private val presenterScheduler : Scheduler) : ViewModelProvider.Factory {
+class VideoViewModelFactory(private val videoService: VideoService, private val presenterScheduler : Scheduler) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return VideoViewModel(VideoPresenter(videoViewState, videoService, presenterScheduler), videoViewState) as T
+        val videoViewState = VideoViewState()
+        val videoPresenter = VideoPresenter(videoViewState, videoService, presenterScheduler)
+        return VideoViewModel(videoPresenter, videoViewState) as T
     }
 }
 
