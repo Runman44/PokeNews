@@ -16,12 +16,12 @@ import static org.mockito.Mockito.verify;
 /**
  * Testing VideoPresenter
  */
-public class VideoInteractorTest {
+public class VideoServiceTest {
 
     private VideoPresenter sut;
 
     @Mock
-    VideoInteractor videoInteractor;
+    VideoService videoService;
 
     @Mock
     VideoFragment videoFragment;
@@ -32,7 +32,7 @@ public class VideoInteractorTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        sut = new VideoPresenter(videoInteractor);
+        sut = new VideoPresenter(videoService);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class VideoInteractorTest {
         sut.attach(videoFragment);
         sut.onEmptyButtonTapped();
 
-        verify(videoInteractor, times(1)).getVideos(anyString(), any(DataLoadedListener.class));
+        verify(videoService, times(1)).getVideos(anyString(), any(DataLoadedListener.class));
         verify(videoFragment, times(1)).setLoadingState();
     }
 
@@ -49,7 +49,7 @@ public class VideoInteractorTest {
         sut.attach(videoFragment);
         sut.onRetryButtonTapped();
 
-        verify(videoInteractor, times(1)).getVideos(anyString(), any(DataLoadedListener.class));
+        verify(videoService, times(1)).getVideos(anyString(), any(DataLoadedListener.class));
         verify(videoFragment, times(1)).setLoadingState();
     }
 
@@ -58,7 +58,7 @@ public class VideoInteractorTest {
         sut.attach(videoFragment);
         sut.onRefreshSwiped();
 
-        verify(videoInteractor, times(1)).getVideos(anyString(), any(DataLoadedListener.class));
+        verify(videoService, times(1)).getVideos(anyString(), any(DataLoadedListener.class));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class VideoInteractorTest {
         sut.attach(videoFragment);
         sut.onLoadData();
 
-        verify(videoInteractor, times(1)).getVideos(anyString(), any(DataLoadedListener.class));
+        verify(videoService, times(1)).getVideos(anyString(), any(DataLoadedListener.class));
         verify(videoFragment, times(1)).setLoadingState();
     }
 

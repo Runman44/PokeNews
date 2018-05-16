@@ -1,20 +1,18 @@
 package nl.mranderson.pokefeeds.video
 
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.Scheduler
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import nl.mranderson.pokefeeds.video.model.FlowStep
 import nl.mranderson.pokefeeds.video.model.VideoViewState
 
-class VideoPresenter(private val videoViewState: VideoViewState, private val model: VideoInteractor) : VideoContract.Presenter {
+class VideoPresenter(private val videoViewState: VideoViewState, private val model: VideoService, private val presenterScheduler: Scheduler) : VideoContract.Presenter {
 
     private val url = "https://www.googleapis.com/youtube/v3/search?part=snippet&fields=items(id(videoId),snippet(title,publishedAt,thumbnails(high(url))))&q=pokemon&type=video&order=date&relevanceLanguage=en-us&max-results=10&key=AIzaSyDlS5wq_ZDcOsHENER-5tsYPej6T3ziNT4&maxResults=25"
     private lateinit var disposable: Disposable
 
     fun start() {
         disposable = model.getVideos(url)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+                .observeOn(presenterScheduler)
                 .subscribe(this::handleResponse, this::handleException)
     }
 

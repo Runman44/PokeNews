@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MRA-HTTP/MRA-HTTP.iml" filepath="$PROJECT_DIR$/MRA-HTTP/MRA-HTTP.iml" />
       <module fileurl="file://$PROJECT_DIR$/MRA-RssReader/MRA-RssReader.iml" filepath="$PROJECT_DIR$/MRA-RssReader/MRA-RssReader.iml" />
       <module fileurl="file://$PROJECT_DIR$/PokemonGoProject.iml" filepath="$PROJECT_DIR$/PokemonGoProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/pokefeed/app.iml" filepath="$PROJECT_DIR$/pokefeed/app.iml" />

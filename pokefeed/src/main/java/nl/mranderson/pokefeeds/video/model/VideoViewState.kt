@@ -3,11 +3,13 @@ package nl.mranderson.pokefeeds.video.model
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import io.reactivex.Scheduler
+import nl.mranderson.pokefeeds.video.VideoService
 import nl.mranderson.pokefeeds.video.VideoPresenter
-
 
 class VideoViewState {
 
+    //TODO learn today.
     var isLoading = MutableLiveData<Boolean>()
     var isFailed = MutableLiveData<Boolean>()
     var data = MutableLiveData<List<Video>>()
@@ -17,12 +19,11 @@ class VideoViewState {
 }
 
 @Suppress("UNCHECKED_CAST")
-class VideoViewModelFactory(private val videoPresenter: VideoPresenter, private val videoViewState: VideoViewState) : ViewModelProvider.Factory {
+class VideoViewModelFactory(private val videoService: VideoService, private val videoViewState: VideoViewState, private val presenterScheduler : Scheduler) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return VideoViewModel(videoPresenter, videoViewState) as T
+        return VideoViewModel(VideoPresenter(videoViewState, videoService, presenterScheduler), videoViewState) as T
     }
 }
-
 
 class VideoViewModel(val presenter: VideoPresenter, val videoViewState: VideoViewState) : ViewModel() {
 

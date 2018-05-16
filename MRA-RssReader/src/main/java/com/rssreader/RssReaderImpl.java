@@ -69,6 +69,7 @@ public class RssReaderImpl implements RssReader {
     }
 
     //TODO dont do this.
+    //TODO OkHttp
     private static String readUrl(String urlString) throws Exception {
             URL url = new URL(urlString);
             URLConnection uc = url.openConnection();
