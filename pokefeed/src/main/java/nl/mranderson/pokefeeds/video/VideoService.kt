@@ -11,7 +11,7 @@ import java.util.*
 
 class VideoService(private val serviceScheduler : Scheduler) {
 
-    fun getVideos(url: String): Single<List<Video>?> {
+    fun getVideos(url: String): Single<List<Video>> {
         return Single.create {
 //            val items = RssReaderImpl().getFromYoutube(url)
 //            Gson().fromJson<Collection<Video>>(items.toString(), object : TypeToken<Collection<Video>>() {}.type)

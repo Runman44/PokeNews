@@ -14,7 +14,7 @@ import nl.mranderson.pokefeeds.interfaces.ListItemListener
 import nl.mranderson.pokefeeds.video.model.Video
 
 class VideoAdapter(private val context: Context?, private val listener: ListItemListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var items = List<Video>()
+    private var items = emptyList<Video>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return VideoItemViewHolder(LayoutInflater.from(parent.context)
